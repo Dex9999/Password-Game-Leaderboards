@@ -1,1 +1,1 @@
-# password-game
+# password game leaderboards
