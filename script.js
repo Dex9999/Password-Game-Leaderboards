@@ -319,4 +319,32 @@ document.addEventListener("DOMContentLoaded", async function () {
       throw new Error("Webhook request failed");
     }
   }
+      function srcTime(time) {
+        let minutes = 0;
+        let seconds = 0;
+        let milliseconds = 0;
+
+        if (time.includes(':')) {
+            const [minPart, secPart] = time.split(':');
+            minutes = parseFloat(minPart);
+            seconds = secPart ? parseFloat(secPart) : 0;
+        } else {
+            seconds = parseFloat(time);
+        }
+
+        let result = '';
+
+        if (minutes > 0) {
+            result += `${minutes}m `;
+        }
+
+        if (!isNaN(seconds)) {
+            result += `${String(Math.floor(seconds)).padStart(2, '0')}s `;
+        }
+
+        result += isNaN(milliseconds) ? '000ms' : `${String(Math.floor(milliseconds)).padStart(3, '0')}ms`;
+
+        return result;
+      }
+      
 });
