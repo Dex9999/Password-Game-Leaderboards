@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     submitFormButton.addEventListener("click", submitRun);
     categorySelect.addEventListener("change", filterLeaderboard);
   
-    async function createLeaderboard() {
+    async function createLeaderboard(newData) {
       leaderboardElement.innerHTML = "";
   
       const table = document.createElement("table");
@@ -48,12 +48,16 @@ document.addEventListener("DOMContentLoaded", async function () {
   
       // Create table body
       const tableBody = document.createElement("tbody");
-  
+
+        let filteredData;
+        if(newData){
+            filteredData = newData
+        } else{
       const selectedCategory = categorySelect.value;
-  
-      let filteredData = leaderboardData.filter(
+      filteredData = leaderboardData.filter(
     (data) => selectedCategory === "all" || data.category === selectedCategory
   );
+        }
   
       // Sort the filtered data based on time (lowest to highest)
       filteredData.sort((a, b) => {
@@ -173,12 +177,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 }
 
 function filterLeaderboardByCategory(category) {
-  let filteredData = leaderboardData.filter(
+  const filteredData = leaderboardData.filter(
     (data) => category === "all" || data.category === category
   );
   leaderboardElement.innerHTML = "";
   createLeaderboard(filteredData);
 }
+
+
 
   
     function populateCategoryDropdown() {
