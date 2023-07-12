@@ -1,0 +1,204 @@
+body {
+    background-color: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  header {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    margin-bottom: 10px;
+  }
+  
+  button {
+    background-color: #fff;
+    color: #111;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  #leaderboard {
+    width: 500px;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #222;
+    border-radius: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #555;
+  }
+  
+  th {
+    background-color: #333;
+  }
+  
+  #popupFormContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    display: none;
+  }
+  
+  #closeFormButton {
+    float: right;
+    margin-left: -100%;
+    background-color: #fff;
+    color: #111;
+    border: none;
+    padding: 0px 7px;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  
+  #popupForm {
+    background-color: #222;
+    padding: 20px;
+    max-width: 400px;
+    border-radius: 10px;
+  }
+  
+  #popupForm h2 {
+    margin-bottom: 10px;
+  }
+  
+  #popupForm label {
+    display: block;
+    margin-top: 5%;
+    color: #fff;
+  }
+  
+  #popupForm input {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .video-link {
+    color: #fff;
+    text-decoration: underline;
+  }
+  
+  h1 svg {
+    width: 200px;
+    height: auto;
+    fill: #fff;
+  }
+  
+  p {
+    color: #808080;
+  }
+  
+  #categoryFilter {
+    margin-top: 10px;
+  }
+  
+  #categoryFilter label {
+    margin-right: 5px;
+    color: #fff;
+  }
+  
+  #categorySelect {
+    padding: 5px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .note {
+    font-style: italic;
+    color: #808080;
+  }
+  
+  button {
+    background-color: #fff;
+    color: #111;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  button:hover {
+    background-color: #a439d1;
+    box-shadow: 0 0 10px #a439d1;
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  a:hover {
+    color: #a439d1;
+    text-shadow: 0 0 10px #a439d1;
+  }
+  
+  .date-popup {
+    position: absolute;
+    background-color: #fff;
+    color: #111;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .rank-image {
+    width: 10px; /* Set the desired width */
+    height: 10px; /* Set the desired height */
+  }
+  
+  #categoryInput {
+    padding: 5px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-top: 1%;
+  }
+  
+  #categoryInput option {
+    background-color: #222;
+    color: #fff;
+  }
+
+  #toggleContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  #toggleContainer label {
+    margin-right: 5px;
+  }
+  
