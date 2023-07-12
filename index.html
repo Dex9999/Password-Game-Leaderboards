@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaderboard Clone</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1><svg id="gameTitle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200"></svg></h1>
+    <div id="categoryFilter">
+      <label for="categorySelect">Filter by Category:</label>
+      <select id="categorySelect">
+        <option value="all">All Categories</option>
+      </select>
+    </div>
+    <br>
+    <button id="submitRunButton">Submit Your Run!</button>
+  </header>
+
+  <div id="leaderboard"></div>
+
+  <div id="popupFormContainer">
+    <div id="popupForm">
+      <button id="closeFormButton">×</button>
+      <h2>Submit Your Run</h2>
+      <p>Note: The run will be manually reviewed before appearing on the site.</p>
+      <div id="warningMessage" style="color: #ff6868;"></div>
+      <label for="playerInput">Player Name:</label>
+      <input type="text" id="playerInput" style="text-align: center;" placeholder="e.g. Tyron18" required>
+
+      <label for="timeInput">Time:</label>
+      <input type="text" id="timeInput" style="text-align: center;" placeholder="e.g. 30:25.540" required>
+
+      <label for="dateInput">Date:</label>
+      <input type="text" id="dateInput" style="text-align: center;" required>
+
+      <label for="categoryInput">Category:</label>
+      <select id="categoryInput" style="text-align: center;" required></select>
+
+      <label for="videoLinkInput">Video Link:</label>
+      <input type="text" id="videoLinkInput" style="text-align: center;" placeholder="e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ" required>
+      <br><br>
+      <button id="submitFormButton">Submit</button>
+    </div>
+  </div>
+
+  <div id="videoModalContainer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
