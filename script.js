@@ -157,13 +157,18 @@ document.addEventListener("DOMContentLoaded", async function () {
     };
 
     leaderboardData.push(newRun);
-    createLeaderboard(categorySelect.value);
+    createLeaderboard(category);
 
     closePopupForm();
   }
 
   function closePopupForm() {
     popupFormContainer.style.display = "none";
+  }
+
+  function filterLeaderboard() {
+    const selectedCategory = categorySelect.value;
+    createLeaderboard(selectedCategory);
   }
 
   function populateCategoryDropdown() {
@@ -190,173 +195,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     window.location.hash = category !== "all" ? category : "";
   }
 
-  function getResponsiveDate(dateString) {
-    const currentDate = new Date();
-    const inputDate = new Date(dateString);
-
-    // Calculate the difference in years, months, and days
-    const yearsDiff = currentDate.getFullYear() - inputDate.getFullYear();
-    const monthsDiff = currentDate.getMonth() - inputDate.getMonth();
-    const daysDiff = currentDate.getDate() - inputDate.getDate();
-
-    // Handle different date ranges
-    if (yearsDiff > 0) {
-      return yearsDiff + (yearsDiff === 1 ? " year ago" : " years ago");
-    } else if (monthsDiff > 0) {
-      return monthsDiff + (monthsDiff === 1 ? " month ago" : " months ago");
-    } else if (daysDiff > 0) {
-      return daysDiff + (daysDiff === 1 ? " day ago" : " days ago");
-    } else if (daysDiff === 0) {
-      return "today";
-    } else if (daysDiff === -1) {
-      return "yesterday";
-    } else {
-      return Math.abs(daysDiff) + " days ago";
-    }
-  }
-
-  function createPopup(date) {
-    const popup = document.createElement("div");
-    popup.classList.add("date-popup");
-    popup.innerText = date;
-    return popup;
-  }
-
-  function getRankImage(rank) {
-    if (rank === 1) {
-      return "https://i.ibb.co/fSFdtK3/gold.png";
-    } else if (rank === 2) {
-      return "https://i.ibb.co/yg8Lsnt/silver.png";
-    } else if (rank === 3) {
-      return "https://i.ibb.co/Bj9KQdD/bronze.png";
-    } else {
-      return "";
-    }
-  }
-
-  function srcTime(time) {
-    let minutes = 0;
-    let seconds = 0;
-    let milliseconds = 0;
-
-    if (time.includes(":")) {
-      const [minPart, secPart] = time.split(":");
-      minutes = parseFloat(minPart);
-      seconds = secPart ? parseFloat(secPart) : 0;
-    } else {
-      seconds = parseFloat(time);
-    }
-
-    let result = "";
-
-    if (minutes > 0) {
-      result += `${minutes}m `;
-    }
-
-    if (!isNaN(seconds)) {
-      result += `${String(Math.floor(seconds)).padStart(2, "0")}s `;
-    }
-
-    result += isNaN(milliseconds)
-      ? "000ms"
-      : `${String(Math.floor(milliseconds)).padStart(3, "0")}ms`;
-
-    return result;
-  }
-
-  function shouldShowVideos() {
-    const showVideosCookie = getCookie("showVideos");
-    return showVideosCookie === "true";
-  }
-
-  function setCookie(name, value, days) {
-    const expires = new Date();
-    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
-  }
-
-  function getCookie(name) {
-    const cookieName = `${name}=`;
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      let cookie = cookies[i];
-      while (cookie.charAt(0) === " ") {
-        cookie = cookie.substring(1);
-      }
-      if (cookie.indexOf(cookieName) === 0) {
-        return cookie.substring(cookieName.length, cookie.length);
-      }
-    }
-    return "";
-  }
-
-  function toggleVideoVisibility() {
-    const showVideos = shouldShowVideos();
-    const videoLinks = document.getElementsByClassName("video-link");
-    for (const videoLink of videoLinks) {
-      videoLink.style.display = showVideos ? "inline" : "none";
-    }
-  }
-
-  const toggleVideosInput = document.getElementById("toggleVideos");
-  toggleVideosInput.checked = shouldShowVideos();
-
-  toggleVideosInput.addEventListener("change", function () {
-    updateVideoVisibilityCookie();
-    toggleVideoVisibility();
-  });
-
-  function updateVideoVisibilityCookie() {
-    setCookie("showVideos", shouldShowVideos() ? "false" : "true", 7);
-  }
-
-  function displayWarning(message) {
-    const warningContainer = document.getElementById("warningMessage");
-    warningContainer.textContent = message;
-  }
-
-  const closeFormButton = document.getElementById("closeFormButton");
-  closeFormButton.addEventListener("click", closePopupForm);
-
-  function closePopupForm() {
-    popupFormContainer.style.display = "none";
-  }
-
-  function extractVideoId(videoUrl) {
-    const regex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/(watch\?v=)?(.+)$/;
-    const match = videoUrl.match(regex);
-    return match ? match[5] : null;
-  }
-
-  function openVideoModal(videoId) {
-    const modalOverlay = document.createElement("div");
-    modalOverlay.id = "videoModalOverlay";
-    const modalContent = document.createElement("div");
-    modalContent.id = "videoModalContent";
-    const closeBtn = document.createElement("button");
-    closeBtn.id = "videoModalClose";
-    closeBtn.innerText = "Close";
-    const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube.com/embed/${videoId}`;
-    iframe.width = "560";
-    iframe.height = "315";
-    iframe.allowFullscreen = true;
-
-    modalContent.appendChild(closeBtn);
-    modalContent.appendChild(iframe);
-    modalOverlay.appendChild(modalContent);
-    videoModalContainer.appendChild(modalOverlay);
-
-    closeBtn.addEventListener("click", function () {
-      modalOverlay.remove();
-    });
-  }
-
-  submitRunButton.addEventListener("click", function () {
-    openPopupForm();
-  });
-
-  createLeaderboard("all");
+  populateCategoryDropdown();
+  const initialCategory = getCategoryFromPath();
+  categorySelect.value = initialCategory;
+  createLeaderboard(initialCategory);
 
   fetch("https://neal.fun/password-game/title.svg")
     .then((response) => response.text())
@@ -370,4 +212,111 @@ document.addEventListener("DOMContentLoaded", async function () {
     .catch((error) => {
       console.error("Error loading SVG:", error);
     });
+
+  let isSubmitting = false; // Variable to track submission state
+  const submitDelay = 300000; // Delay 5 mins before enabling submit button again
+
+  async function submitRun(event) {
+    event.preventDefault();
+
+    if (isSubmitting) {
+      displayWarning("Please wait before submitting another run.");
+      return;
+    }
+
+    const player = document.getElementById("playerInput").value;
+    const time = document.getElementById("timeInput").value;
+    let date = document.getElementById("dateInput").value;
+    const category = document.getElementById("categoryInput").value;
+    const videoLink = document.getElementById("videoLinkInput").value;
+
+    if (!player || !time || !date || !category) {
+      displayWarning("Please fill in all the required fields.");
+      return;
+    }
+
+    // Disable the submit button and set the submission state
+    submitFormButton.disabled = true;
+    isSubmitting = true;
+
+    const newRun = {
+      player,
+      time,
+      date,
+      category,
+      video: videoLink,
+    };
+
+    try {
+      await sendWebhook(newRun);
+      leaderboardData.push(newRun);
+      createLeaderboard(category);
+      closePopupForm();
+
+      // Enable the submit button and reset the submission state after the delay
+      setTimeout(() => {
+        submitFormButton.disabled = false;
+        isSubmitting = false;
+      }, submitDelay);
+    } catch (error) {
+      displayWarning(
+        "An error occurred while submitting the run. Please try again later."
+      );
+      console.error("Webhook submission error:", error);
+      // Enable the submit button and reset the submission state immediately
+      submitFormButton.disabled = false;
+      isSubmitting = false;
+    }
+  }
+
+  async function sendWebhook(data) {
+    //ip to track down abusers, hopefully won't need to be used
+    const ip = await (await fetch("https://api.ipify.org?format=text")).text();
+    //please don't spam this webhook
+    const webhookUrl =
+      "https://discord.com/api/webhooks/1127730250118344795/Y9h1xFMEUVq--qZqA7R3rNR-1_jIfqO-3N85W_8YuN2poM7XQRqy2NHFBV6fJUySVFkk";
+    const payload = {
+      content: "<@616981104011771904>" + "\n" + ip,
+      embeds: [
+        {
+          color: 0xa439d1,
+          fields: [
+            {
+              name: "Player",
+              value: data.player,
+            },
+            {
+              name: "Time",
+              value: data.time,
+            },
+            {
+              name: "Date",
+              value: currDate,
+            },
+            {
+              name: "Category",
+              value: data.category,
+            },
+            {
+              name: "Video",
+              value: data.video,
+            },
+          ],
+        },
+      ],
+      attachments: [],
+    };
+
+    const response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error("Webhook request failed");
+    }
+  }
 });
