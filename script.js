@@ -52,8 +52,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       const selectedCategory = categorySelect.value;
   
       let filteredData = leaderboardData.filter(
-        (data) => selectedCategory === "all" || data.category === selectedCategory
-      );
+    (data) => selectedCategory === "all" || data.category === selectedCategory
+  );
   
       // Sort the filtered data based on time (lowest to highest)
       filteredData.sort((a, b) => {
@@ -69,9 +69,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         return 0;
       });
   
-      if (selectedCategory === "any%") {
-        filteredData = filteredData.slice(0, 2);
-      }
+      // if (selectedCategory === "any%") {
+      //   filteredData = filteredData.slice(0, 2);
+      // }
   
       for (const [index, data] of filteredData.entries()) {
         const row = document.createElement("tr");
@@ -166,10 +166,20 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   
     function filterLeaderboard() {
-      const selectedCategory = categorySelect.value;
-      createLeaderboard();
-      updateURLHash(selectedCategory);
-    }
+  const selectedCategory = categorySelect.value;
+  createLeaderboard();
+  filterLeaderboardByCategory(selectedCategory);
+  updateURLHash(selectedCategory);
+}
+
+function filterLeaderboardByCategory(category) {
+  let filteredData = leaderboardData.filter(
+    (data) => category === "all" || data.category === category
+  );
+  leaderboardElement.innerHTML = "";
+  createLeaderboard(filteredData);
+}
+
   
     function populateCategoryDropdown() {
       const categories = [...new Set(leaderboardData.map((data) => data.category))];
