@@ -131,8 +131,10 @@ document.addEventListener("DOMContentLoaded", async function () {
       table.appendChild(tableHeader);
       table.appendChild(tableBody);
       leaderboardElement.appendChild(table);
-  
+
+        try{
       updateURLHash(selectedCategory);
+        } catch{}
     }
   
     function openPopupForm() {
