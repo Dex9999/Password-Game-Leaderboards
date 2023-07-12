@@ -216,7 +216,7 @@ function filterLeaderboardByCategory(category) {
   const hash = window.location.hash;
   const category = hash ? hash.substr(1) : "all"; // Remove the leading hash symbol
 
-  return category || "all"; // Default to "all" if no category found
+  return category || ""; // Default to empty string if no category found
 }
 
   
