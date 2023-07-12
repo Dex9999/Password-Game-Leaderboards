@@ -205,11 +205,12 @@ function filterLeaderboardByCategory(category) {
     }
   
     function getCategoryFromPath() {
-      const path = window.location.pathname;
-      const category = path.substr(1); // Remove the leading slash
-  
-      return category || "all"; // Default to "all" if no category found
-    }
+  const hash = window.location.hash;
+  const category = hash ? hash.substr(1) : "all"; // Remove the leading hash symbol
+
+  return category || "all"; // Default to "all" if no category found
+}
+
   
     function updateURLHash(category) {
       window.location.hash = category !== "all" ? category : "";
