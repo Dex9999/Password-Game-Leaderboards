@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     submitFormButton.addEventListener("click", submitRun);
     categorySelect.addEventListener("change", filterLeaderboard);
   
-    async function createLeaderboard() {
+    async function createLeaderboard(selectedCategory) {
       leaderboardElement.innerHTML = "";
   
       const table = document.createElement("table");
@@ -52,8 +52,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       const selectedCategory = categorySelect.value;
   
       let filteredData = leaderboardData.filter(
-        (data) => selectedCategory === "all" || data.category === selectedCategory
-      );
+      (data) =>
+        selectedCategory === "all" || data.category === selectedCategory
+        );
   
       // Sort the filtered data based on time (lowest to highest)
       filteredData.sort((a, b) => {
@@ -167,7 +168,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   
     function filterLeaderboard() {
       const selectedCategory = categorySelect.value;
-      createLeaderboard();
+      createLeaderboard(selectedCategory);
       updateURLHash(selectedCategory);
     }
   
@@ -195,10 +196,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   
     function getCategoryFromPath() {
-      const path = window.location.pathname;
-      const category = path.substr(1); // Remove the leading slash
-  
-      return category || "all"; // Default to "all" if no category found
+      const hash = window.location.hash;
+      const category = hash ? hash.substring(1) : "all"; // Remove the leading '#' character
+
+      return category;
     }
   
     function updateURLHash(category) {
@@ -206,8 +207,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   
     populateCategoryDropdown();
-    categorySelect.value = getCategoryFromPath();
-    createLeaderboard();
+    const initialCategory = getCategoryFromPath();
+    categorySelect.value = initialCategory;
+    createLeaderboard(initialCategory);
   
     fetch("https://neal.fun/password-game/title.svg")
       .then((response) => response.text())
