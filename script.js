@@ -402,8 +402,8 @@ document.addEventListener("DOMContentLoaded", async function () {
           closeBtn.innerText = "Close";
           const iframe = document.createElement("iframe");
           iframe.src = `https://www.youtube.com/embed/${videoId}`;
-          iframe.width = "43rem";
-          iframe.height = "24rem";
+          iframe.style.width = "43rem";
+          iframe.style.height = "24rem";
           iframe.borderWidth = "3rem";
           iframe.allowFullscreen = true;
         
