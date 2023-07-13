@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const svgPath = gameTitleSVG.querySelector("path");
             if (svgPath) {
                 svgPath.setAttribute("fill", "#fff"); 
-            }
+            } 
         }).catch((error) => {
             console.error("Error loading SVG:", error);
         });
