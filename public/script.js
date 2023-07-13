@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             if(category.includes("%"){
                 window.location.hash = category !== "all" ? category : "";
             } else{
-                window.location.hash = category !== "all" ? category+"%" : "";
+                window.location.hash = category !== "all" ? `${category}%` : "";
             }
         }
 
