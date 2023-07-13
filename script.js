@@ -352,10 +352,7 @@ function filterLeaderboardByCategory(category) {
   
     const closeFormButton = document.getElementById("closeFormButton");
     closeFormButton.addEventListener("click", closePopupForm);
-  
-    function closePopupForm() {
-      popupFormContainer.style.display = "none";
-    }
+
   
     function getResponsiveDate(dateString) {
       const currentDate = new Date();
@@ -484,55 +481,6 @@ function filterLeaderboardByCategory(category) {
     });
   
     createLeaderboard();
-  
-    fetch("https://neal.fun/password-game/title.svg")
-      .then((response) => response.text())
-      .then((svgData) => {
-        gameTitleSVG.innerHTML = svgData;
-        const svgPath = gameTitleSVG.querySelector("path");
-        if (svgPath) {
-          svgPath.setAttribute("fill", "#fff"); // Change the fill color to white
-        }
-      })
-      .catch((error) => {
-        console.error("Error loading SVG:", error);
-      });
-  
-    function closePopupForm() {
-      popupFormContainer.style.display = "none";
-    }
-  
-    function getResponsiveDate(dateString) {
-      const currentDate = new Date();
-      const inputDate = new Date(dateString);
-  
-      // Calculate the difference in years, months, and days
-      const yearsDiff = currentDate.getFullYear() - inputDate.getFullYear();
-      const monthsDiff = currentDate.getMonth() - inputDate.getMonth();
-      const daysDiff = currentDate.getDate() - inputDate.getDate();
-  
-      // Handle different date ranges
-      if (yearsDiff > 0) {
-        return yearsDiff + (yearsDiff === 1 ? " year ago" : " years ago");
-      } else if (monthsDiff > 0) {
-        return monthsDiff + (monthsDiff === 1 ? " month ago" : " months ago");
-      } else if (daysDiff > 0) {
-        return daysDiff + (daysDiff === 1 ? " day ago" : " days ago");
-      } else if (daysDiff === 0) {
-        return "today";
-      } else if (daysDiff === -1) {
-        return "yesterday";
-      } else {
-        return Math.abs(daysDiff) + " days ago";
-      }
-    }
-  
-    function createPopup(date) {
-      const popup = document.createElement("div");
-      popup.classList.add("date-popup");
-      popup.innerText = date;
-      return popup;
-    }
 
     function srcTime(time) {
         let minutes = 0;
@@ -540,9 +488,10 @@ function filterLeaderboardByCategory(category) {
         let milliseconds = 0;
 
         if (time.includes(':')) {
-            const [minPart, secPart] = time.split(':');
+            const [minPart, secPart, milPart] = time.split(':').split(".");
             minutes = parseFloat(minPart);
             seconds = secPart ? parseFloat(secPart) : 0;
+            milliseconds = milPart ? parseFloat(milPart) : 0;
         } else {
             seconds = parseFloat(time);
         }
