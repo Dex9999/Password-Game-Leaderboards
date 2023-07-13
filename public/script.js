@@ -221,18 +221,19 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         function getCategoryFromPath() {
             const hash = window.location.hash;
-            const category = hash ? hash.substr(1) : "all";
+            let category
+            if(category.includes("%"){
+                category = hash ? hash.substr(1) : "all";
+            } else{
+                category = hash ? hash.substr(1)+"%" : "all";
+            }
 
             return category || ""; 
         }
 
 
         function updateURLHash(category) {
-            if(category.includes("%"){
-                window.location.hash = category !== "all" ? category : "";
-            } else{
-                window.location.hash = category !== "all" ? `${category}%` : "";
-            }
+            window.location.hash = category !== "all" ? category : "";
         }
 
         populateCategoryDropdown();
