@@ -2,7 +2,7 @@
   "name": "password-game-leaderboards",
   "version": "1.0.0",
   "description": "Leaderboard",
-  "main": "./api/index.js",
+  "main": "index.js",
   "dependencies": {
     "express": "^4.17.1"
   }
