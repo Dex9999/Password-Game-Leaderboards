@@ -433,16 +433,20 @@ document.addEventListener("DOMContentLoaded", async function () {
           modalContent.style.background = "#000";
           modalContent.style.borderRadius = "10px";
           modalContent.style.padding = "20px";
+          modalContent.style.transform = "translateZ(50px)";
         
           closeBtn.style.position = "absolute";
-          closeBtn.style.top = "10px";
-          closeBtn.style.right = "10px";
-          closeBtn.style.color = "#fff";
-          closeBtn.style.background = "none";
+          closeBtn.style.top = "-18px";
+          closeBtn.style.right = "20px";
+          closeBtn.style.color = "black";
+          closeBtn.style.background = "white";
           closeBtn.style.border = "none";
           closeBtn.style.fontFamily = "Arial, sans-serif";
           closeBtn.style.fontSize = "16px";
           closeBtn.style.cursor = "pointer";
+
+          iframe.style.borderRadius = "8px";
+          iframe.style.transform = "translateZ(100px)";
         
           // Center the modal vertically and horizontally
           modalContent.style.position = "fixed";
