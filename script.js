@@ -191,7 +191,7 @@ function filterLeaderboardByCategory(category) {
   
     function populateCategoryDropdown() {
       const categories = [...new Set(leaderboardData.map((data) => data.category))];
-      //categories.unshift("all");
+      categories.unshift("all");
   
       categorySelect.innerHTML = "";
       for (const category of categories) {
