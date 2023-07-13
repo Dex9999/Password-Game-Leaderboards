@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 
 // Route all requests to index.html
 app.get('*', (req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Start the server
