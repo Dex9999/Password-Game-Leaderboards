@@ -228,7 +228,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         function updateURLHash(category) {
-            window.location.hash = category !== "all" ? category : "";
+            if(category.includes("%"){
+                window.location.hash = category !== "all" ? category : "";
+            } else{
+                window.location.hash = category !== "all" ? category+"%" : "";
+            }
         }
 
         populateCategoryDropdown();
