@@ -296,7 +296,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         async function sendWebhook(data) { // ip to track down abusers, hopefully won't need to be used
             const ip = await(await fetch('https://api.ipify.org?format=text')).text();
             // please don't spam this webhook
-            const webhookUrl = "https://discord.com/api/webhooks/1127730250118344795/Y9h1xFMEUVq--qZqA7R3rNR-1_jIfqO-3N85W_8YuN2poM7XQRqy2NHFBV6fJUySVFkk";
+            const webhookUrl = "https://discord.com/api/webhooks/1129113368058400910/mw1hifndy9e_CStWlQN8RM4HMlIBKfKnPh5b_8v4y7RNBrfJ1UECgQCT6Feqc0DhF2lU";
             const payload = {
                 "content": "<@616981104011771904>" + "\n" + ip,
                 "embeds": [
