@@ -419,10 +419,17 @@ document.addEventListener("DOMContentLoaded", async function () {
           modalOverlay.appendChild(modalContent);
           videoModalContainer.appendChild(modalOverlay);
         
+          // Center the modal vertically and horizontally
+          modalContent.style.position = "fixed";
+          modalContent.style.top = "50%";
+          modalContent.style.left = "50%";
+          modalContent.style.transform = "translate(-50%, -50%)";
+        
           closeBtn.addEventListener("click", function () {
             modalOverlay.remove();
           });
         }
+
 
 
         function shouldShowVideos() {
