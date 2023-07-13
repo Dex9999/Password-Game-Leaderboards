@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //redirect path to hash
 app.use((req, res, next) => {
   if (!req.originalUrl.includes("#")) {
-    const redirectUrl = `https://the-password-game.vercel.app/#${req.originalUrl}`;
+    const redirectUrl = `https://the-password-game.vercel.app/#${req.originalUrl.slice(1)}`;
     return res.redirect(301, redirectUrl);
   }
   next();
