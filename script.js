@@ -437,7 +437,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           closeBtn.style.fontSize = "16px";
           closeBtn.style.cursor = "pointer";
 
-          iframe.style.borderRadius = "15px";
+          iframe.style.borderRadius = "25px";
           iframe.style.transform = "translateZ(100px)";
         
           modalContent.style.position = "fixed";
