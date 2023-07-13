@@ -220,8 +220,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
         function getCategoryFromPath() {
         const path = window.location.pathname;
-            console.log(path)
-        const category = path.length > 1 ? path.slice(1) : "all";
+            let category;
+            if(path.includes("%")){
+                category = path ? path.substr(1) : "all";
+            } else{
+                category = path ? path.substr(1)+"%" : "all";
+            }
+        // const category = path.length > 1 ? path.slice(1) : "all";
             console.log(category)
         return category;
     }
