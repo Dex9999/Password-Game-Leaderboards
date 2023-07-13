@@ -487,7 +487,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             let milliseconds = 0;
 
             if (time.includes(':')) {
-                const [minPart, secPart, milPart] = (time.split(':')).split(".");
+                const [minPart, secPart, milPart] = time.split(':').split(".");
                 minutes = parseFloat(minPart);
                 seconds = secPart ? parseFloat(secPart) : 0;
                 milliseconds = milPart ? parseFloat(milPart) : 0;
