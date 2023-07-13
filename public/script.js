@@ -227,6 +227,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             } else{
                 category = hash ? hash.substr(1)+"%" : "all";
             }
+            console.log(category)
 
             return category || ""; 
         }
