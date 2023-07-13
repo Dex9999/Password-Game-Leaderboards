@@ -428,8 +428,8 @@ document.addEventListener("DOMContentLoaded", async function () {
           modalContent.style.transform = "translateZ(50px)";
         
           closeBtn.style.position = "absolute";
-          closeBtn.style.top = "-18px";
-          closeBtn.style.right = "20px";
+          closeBtn.style.top = "-25px";
+          closeBtn.style.right = "39px";
           closeBtn.style.color = "black";
           closeBtn.style.background = "white";
           closeBtn.style.border = "none";
@@ -439,6 +439,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
           iframe.style.borderRadius = "25px";
           iframe.style.transform = "translateZ(100px)";
+          iframe.style.borderColor = "transparent";
+          iframe.style.outline = "thick solid #a439d1";
+          iframe.style.outlineOffset = "-6px";
         
           modalContent.style.position = "fixed";
           modalContent.style.top = "50%";
