@@ -93,11 +93,20 @@ document.addEventListener("DOMContentLoaded", async function () {
                 }
                 const playerCell = document.createElement("td");
                 const playerLink = document.createElement("a");
-                playerLink.href = data.video;
-                playerLink.target = "_blank";
-                playerLink.classList.add("video-link");
-                playerLink.innerText = data.player;
-                playerCell.appendChild(playerLink);
+                  playerLink.href = data.video;
+                  playerLink.target = "_blank";
+                  playerLink.classList.add("video-link");
+                  playerLink.innerText = data.player;
+                
+                  // Add click event listener to open the video modal
+                  playerLink.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const videoId = extractVideoId(data.video);
+                    openVideoModal(videoId);
+                  });
+                
+                  playerCell.appendChild(playerLink);
+                
                 const timeCell = document.createElement("td");
                 timeCell.innerText = srcTime(data.time);
                 const dateCell = document.createElement("td");
@@ -385,34 +394,36 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         function extractVideoId(videoUrl) {
-            const regex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/(watch\?v=)?(.+)$/;
-            const match = videoUrl.match(regex);
-            return match ? match[5] : null;
+          const regex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$/;
+          const match = videoUrl.match(regex);
+          return match ? match[6] : null;
         }
+
 
         function openVideoModal(videoId) {
-            const modalOverlay = document.createElement("div");
-            modalOverlay.id = "videoModalOverlay";
-            const modalContent = document.createElement("div");
-            modalContent.id = "videoModalContent";
-            const closeBtn = document.createElement("button");
-            closeBtn.id = "videoModalClose";
-            closeBtn.innerText = "Close";
-            const iframe = document.createElement("iframe");
-            iframe.src = `https://www.youtube.com/embed/${videoId}`;
-            iframe.width = "560";
-            iframe.height = "315";
-            iframe.allowFullscreen = true;
-
-            modalContent.appendChild(closeBtn);
-            modalContent.appendChild(iframe);
-            modalOverlay.appendChild(modalContent);
-            videoModalContainer.appendChild(modalOverlay);
-
-            closeBtn.addEventListener("click", function () {
-                modalOverlay.remove();
-            });
+          const modalOverlay = document.createElement("div");
+          modalOverlay.id = "videoModalOverlay";
+          const modalContent = document.createElement("div");
+          modalContent.id = "videoModalContent";
+          const closeBtn = document.createElement("button");
+          closeBtn.id = "videoModalClose";
+          closeBtn.innerText = "Close";
+          const iframe = document.createElement("iframe");
+          iframe.src = `https://www.youtube.com/embed/${videoId}`;
+          iframe.width = "560";
+          iframe.height = "315";
+          iframe.allowFullscreen = true;
+        
+          modalContent.appendChild(closeBtn);
+          modalContent.appendChild(iframe);
+          modalOverlay.appendChild(modalContent);
+          videoModalContainer.appendChild(modalOverlay);
+        
+          closeBtn.addEventListener("click", function () {
+            modalOverlay.remove();
+          });
         }
+
 
         function shouldShowVideos() {
             const showVideosCookie = getCookie("showVideos");
