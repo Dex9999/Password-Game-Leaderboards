@@ -404,6 +404,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           iframe.src = `https://www.youtube.com/embed/${videoId}`;
           iframe.width = "560";
           iframe.height = "315";
+          iframe.borderWidth = "3rem";
           iframe.allowFullscreen = true;
         
           modalContent.appendChild(closeBtn);
@@ -436,7 +437,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           closeBtn.style.fontSize = "16px";
           closeBtn.style.cursor = "pointer";
 
-          iframe.style.borderRadius = "8px";
+          iframe.style.borderRadius = "15px";
           iframe.style.transform = "translateZ(100px)";
         
           modalContent.style.position = "fixed";
