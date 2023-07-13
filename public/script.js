@@ -218,24 +218,35 @@ document.addEventListener("DOMContentLoaded", async function () {
                 categoryInput.appendChild(option);
             }
         }
-
         function getCategoryFromPath() {
-            const hash = window.location.hash;
-            let category;
-            if(hash.includes("%")){
-                category = hash ? hash.substr(1) : "all";
-            } else{
-                category = hash ? hash.substr(1)+"%" : "all";
-            }
+        const path = window.location.pathname;
+            console.log(path)
+        const category = path.length > 1 ? path.slice(1) : "all";
             console.log(category)
+        return category;
+    }
 
-            return category || ""; 
-        }
+    function updateURLHash(category) {
+        const newPath = category !== "all" ? `/${category}` : "/";
+        window.history.pushState(null, null, newPath);
+    }
+        // function getCategoryFromPath() {
+        //     const hash = window.location.hash;
+        //     let category;
+        //     if(hash.includes("%")){
+        //         category = hash ? hash.substr(1) : "all";
+        //     } else{
+        //         category = hash ? hash.substr(1)+"%" : "all";
+        //     }
+        //     console.log(category)
+
+        //     return category || ""; 
+        // }
 
 
-        function updateURLHash(category) {
-            window.location.hash = category !== "all" ? category : "";
-        }
+        // function updateURLHash(category) {
+        //     window.location.hash = category !== "all" ? category : "";
+        // }
 
         populateCategoryDropdown();
         categorySelect.value = getCategoryFromPath();
