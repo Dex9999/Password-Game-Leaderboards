@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             gameTitleSVG.innerHTML = svgData;
             const svgPath = gameTitleSVG.querySelector("path");
             if (svgPath) {
-                svgPath.setAttribute("fill", "#fff"); // Change the fill color to white
+                svgPath.setAttribute("fill", "#fff"); 
             }
         }).catch((error) => {
             console.error("Error loading SVG:", error);
@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             const table = document.createElement("table");
 
-            // Create table header
             const tableHeader = document.createElement("thead");
             const headerRow = document.createElement("tr");
             const rankHeader = document.createElement("th");
@@ -56,7 +55,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             headerRow.appendChild(categoryHeader);
             tableHeader.appendChild(headerRow);
 
-            // Create table body
             const tableBody = document.createElement("tbody");
 
             let filteredData;
@@ -67,7 +65,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                 filteredData = leaderboardData.filter((data) => selectedCategory === "all" || data.category === selectedCategory);
             }
 
-            // Sort the filtered data based on time (lowest to highest)
             filteredData.sort((a, b) => {
                 const timeA = a.time.split(":").map(Number);
                 const timeB = b.time.split(":").map(Number);
@@ -89,7 +86,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 const row = document.createElement("tr");
                 const rankCell = document.createElement("td");
                 if (!(index < 3)) {
-                    rankCell.innerText = index + 1; // Set the rank based on the index
+                    rankCell.innerText = index + 1; 
                 }
                 const playerCell = document.createElement("td");
                 const playerLink = document.createElement("a");
@@ -98,7 +95,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                   playerLink.classList.add("video-link");
                   playerLink.innerText = data.player;
                 
-                  // Add click event listener to open the video modal
                   playerLink.addEventListener("click", function (event) {
                     event.preventDefault();
                     const videoId = extractVideoId(data.video);
@@ -132,7 +128,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     rankImageElement.classList.add("rank-image");
                     rankCell.appendChild(rankImageElement);
                 } else {
-                    rankCell.innerText = index + 1; // Set the rank number for other ranks
+                    rankCell.innerText = index + 1;
                 } rankCell.style.textAlign = "center";
 
                 row.appendChild(rankCell);
@@ -225,9 +221,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         function getCategoryFromPath() {
             const hash = window.location.hash;
-            const category = hash ? hash.substr(1) : "all"; // Remove the leading hash symbol
+            const category = hash ? hash.substr(1) : "all";
 
-            return category || ""; // Default to empty string if no category found
+            return category || ""; /
         }
 
 
@@ -239,8 +235,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         categorySelect.value = getCategoryFromPath();
         createLeaderboard();
 
-        let isSubmitting = false; // Variable to track submission state
-        const submitDelay = 300000; // Delay 5 mins before enabling submit button again
+        let isSubmitting = false; 
+        const submitDelay = 300000; 
 
         async function submitRun(event) {
             event.preventDefault();
@@ -261,7 +257,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                 return;
             }
 
-            // Disable the submit button and set the submission state
             submitFormButton.disabled = true;
             isSubmitting = true;
 
@@ -279,7 +274,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                 createLeaderboard();
                 closePopupForm();
 
-                // Enable the submit button and reset the submission state after the delay
                 setTimeout(() => {
                     submitFormButton.disabled = false;
                     isSubmitting = false;
@@ -287,7 +281,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             } catch (error) {
                 displayWarning("An error occurred while submitting the run. Please try again later.");
                 console.error("Webhook submission error:", error);
-                // Enable the submit button and reset the submission state immediately
+
                 submitFormButton.disabled = false;
                 isSubmitting = false;
             }
@@ -353,12 +347,10 @@ document.addEventListener("DOMContentLoaded", async function () {
             const currentDate = new Date();
             const inputDate = new Date(dateString);
 
-            // Calculate the difference in years, months, and days
             const yearsDiff = currentDate.getFullYear() - inputDate.getFullYear();
             const monthsDiff = currentDate.getMonth() - inputDate.getMonth();
             const daysDiff = currentDate.getDate() - inputDate.getDate();
 
-            // Handle different date ranges
             if (yearsDiff > 0) {
                 return yearsDiff + (yearsDiff === 1 ? " year ago" : " years ago");
             } else if (monthsDiff > 0) {
@@ -419,7 +411,6 @@ document.addEventListener("DOMContentLoaded", async function () {
           modalOverlay.appendChild(modalContent);
           videoModalContainer.appendChild(modalOverlay);
         
-          // Apply CSS styles
           modalOverlay.style.position = "fixed";
           modalOverlay.style.top = "0";
           modalOverlay.style.left = "0";
@@ -448,7 +439,6 @@ document.addEventListener("DOMContentLoaded", async function () {
           iframe.style.borderRadius = "8px";
           iframe.style.transform = "translateZ(100px)";
         
-          // Center the modal vertically and horizontally
           modalContent.style.position = "fixed";
           modalContent.style.top = "50%";
           modalContent.style.left = "50%";
@@ -511,8 +501,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         submitRunButton.addEventListener("click", function () {
-            // updateVideoVisibilityCookie();
-            // toggleVideoVisibility();
+            updateVideoVisibilityCookie();
+            toggleVideoVisibility();
             openPopupForm();
         });
 
