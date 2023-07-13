@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const hash = window.location.hash;
             const category = hash ? hash.substr(1) : "all";
 
-            return category || ""; /
+            return category || ""; 
         }
 
 
