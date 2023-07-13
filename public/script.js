@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         function getCategoryFromPath() {
             const hash = window.location.hash;
             let category
-            if(category.includes("%"){
+            if(category.includes("%")){
                 category = hash ? hash.substr(1) : "all";
             } else{
                 category = hash ? hash.substr(1)+"%" : "all";
