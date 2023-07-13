@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
     const response = await fetch("https://dumb-lil-cors-thing.vercel.app/api?url=https%3A%2F%2Fwahooo.dex99.repl.co%2Fspeedrun-data");
         let leaderboardData = await response.json()
-        
+         
         fetch("https://neal.fun/password-game/title.svg").then((response) => response.text()).then((svgData) => {
             gameTitleSVG.innerHTML = svgData;
             const svgPath = gameTitleSVG.querySelector("path");
