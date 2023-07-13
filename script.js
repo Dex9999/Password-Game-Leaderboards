@@ -419,6 +419,31 @@ document.addEventListener("DOMContentLoaded", async function () {
           modalOverlay.appendChild(modalContent);
           videoModalContainer.appendChild(modalOverlay);
         
+          // Apply CSS styles
+          modalOverlay.style.position = "fixed";
+          modalOverlay.style.top = "0";
+          modalOverlay.style.left = "0";
+          modalOverlay.style.width = "100%";
+          modalOverlay.style.height = "100%";
+          modalOverlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+          modalOverlay.style.display = "flex";
+          modalOverlay.style.justifyContent = "center";
+          modalOverlay.style.alignItems = "center";
+        
+          modalContent.style.background = "#000";
+          modalContent.style.borderRadius = "10px";
+          modalContent.style.padding = "20px";
+        
+          closeBtn.style.position = "absolute";
+          closeBtn.style.top = "10px";
+          closeBtn.style.right = "10px";
+          closeBtn.style.color = "#fff";
+          closeBtn.style.background = "none";
+          closeBtn.style.border = "none";
+          closeBtn.style.fontFamily = "Arial, sans-serif";
+          closeBtn.style.fontSize = "16px";
+          closeBtn.style.cursor = "pointer";
+        
           // Center the modal vertically and horizontally
           modalContent.style.position = "fixed";
           modalContent.style.top = "50%";
@@ -429,6 +454,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             modalOverlay.remove();
           });
         }
+
 
 
 
