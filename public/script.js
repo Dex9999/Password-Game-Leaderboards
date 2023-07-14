@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 errorCell.colSpan = 5;
                 errorCell.innerText = "No results found for this category.";
                 errorCell.style.textAlign = "center";
+                errorCell.style.border = '2px dashed red'
                 errorRow.appendChild(errorCell);
                 tableBody.appendChild(errorRow);
             } else {
