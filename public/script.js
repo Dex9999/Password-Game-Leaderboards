@@ -165,30 +165,30 @@ document.addEventListener("DOMContentLoaded", async function () {
             dateElem.placeholder = currDate;
         }
 
-        function submitRun(event) {
-            event.preventDefault();
+        // function submitRun(event) {
+        //     event.preventDefault();
 
-            const player = document.getElementById("playerInput").value;
-            let time = document.getElementById("timeInput").value;
-            const date = document.getElementById("dateInput").value;
-            const category = document.getElementById("categoryInput").value;
-            const videoLink = document.getElementById("videoLinkInput").value;
+        //     const player = document.getElementById("playerInput").value;
+        //     let time = document.getElementById("timeInput").value;
+        //     const date = document.getElementById("dateInput").value;
+        //     const category = document.getElementById("categoryInput").value;
+        //     const videoLink = document.getElementById("videoLinkInput").value;
 
-            time = !time.includes(":") ? "00:"+time : time;
+        //     time = !time.includes(":") ? "00:"+time : time;
             
-            const newRun = {
-                player,
-                time,
-                date,
-                category,
-                video: videoLink
-            };
+        //     const newRun = {
+        //         player,
+        //         time,
+        //         date,
+        //         category,
+        //         video: videoLink
+        //     };
 
-            leaderboardData.push(newRun);
-            createLeaderboard();
+        //     leaderboardData.push(newRun);
+        //     createLeaderboard();
 
-            closePopupForm();
-        }
+        //     closePopupForm();
+        // }
 
         function closePopupForm() {
             popupFormContainer.style.display = "none";
@@ -282,15 +282,17 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
 
             const player = document.getElementById("playerInput").value;
-            const time = document.getElementById("timeInput").value;
+            let time = document.getElementById("timeInput").value;
             let date = document.getElementById("dateInput").value;
             const category = document.getElementById("categoryInput").value;
             const videoLink = document.getElementById("videoLinkInput").value;
 
-            if (! player || ! time || ! date || ! category) {
-                displayWarning("Please fill in all the required fields.");
+            if (!player || !time || !date || !category || !videoLink) {
+                displayWarning("Please fill in all fields.");
                 return;
             }
+
+            time = !time.includes(":") ? "00:"+time : time;
 
             submitFormButton.disabled = true;
             isSubmitting = true;
