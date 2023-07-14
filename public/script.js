@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         function getCategoryFromPath() {
         const path = window.location.pathname;
             let category;
-            if(path.length > 1){
+            if(path.length > 0){
                 if(path.includes("%")){
                     category = path ? path.substr(1) : "all";
                 } else{
@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     function updateURLHash(category) {
-        const newPath = category !== "all" ? `/${category}` : "/";
+        const newPath = category !== "all" ? `/${category.slice(1)}` : "/";
         window.history.pushState(null, null, newPath);
     }
         // function getCategoryFromPath() {
