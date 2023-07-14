@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     function updateURLHash(category) {
-        const newPath = category !== "all" ? `/${category.slice(1)}` : "/";
+        const newPath = category !== "all" ? `/${category.slice(-1)}` : "/";
         window.history.pushState(null, null, newPath);
     }
         // function getCategoryFromPath() {
