@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const category = document.getElementById("categoryInput").value;
             const videoLink = document.getElementById("videoLinkInput").value;
 
-            time = time.includes(":") ? "00:"+time : time;
+            time = !time.includes(":") ? "00:"+time : time;
             
             const newRun = {
                 player,
