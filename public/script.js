@@ -221,21 +221,19 @@ document.addEventListener("DOMContentLoaded", async function () {
         function getCategoryFromPath() {
         const path = window.location.pathname;
             let category;
-            if(path.length > 0){
                 if(path.includes("%")){
                     category = path ? path.substr(1) : "all";
                 } else{
-                    
                     category = path ? path.substr(1)+"%" : "all";
+                    category = category == "%" ? "all" : category
                 }
-            } else {category = "all"}
         // const category = path.length > 1 ? path.slice(1) : "all";
-            console.log(category)
+        console.log(category)
         return category;
     }
 
     function updateURLHash(category) {
-        const newPath = category !== "all" ? `/${category.slice(-1)}` : "/";
+        const newPath = category !== "all" ? `/${category.slice(0,-1)}` : "/";
         window.history.pushState(null, null, newPath);
     }
         // function getCategoryFromPath() {
