@@ -340,7 +340,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                             },
                             {
                                 "name": "Date",
-                                "value": currDate
+                                "value": data.date
                             },
                             {
                                 "name": "Category",
