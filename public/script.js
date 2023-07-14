@@ -434,7 +434,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           closeBtn.id = "videoModalClose";
           closeBtn.innerText = "Close";
           const iframe = document.createElement("iframe");
-          iframe.src = `https://www.youtube.com/embed/${videoId}`;
+          iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}`;
           iframe.style.width = "43rem";
           iframe.style.height = "24rem";
           iframe.borderWidth = "3rem";
