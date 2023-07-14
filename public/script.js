@@ -65,85 +65,94 @@ document.addEventListener("DOMContentLoaded", async function () {
                 filteredData = leaderboardData.filter((data) => selectedCategory === "all" || data.category === selectedCategory);
             }
 
-            filteredData.sort((a, b) => {
-                const timeA = a.time.split(":").map(Number);
-                const timeB = b.time.split(":").map(Number);
-
-                for (let i = 0; i < 3; i++) {
-                    if (timeA[i] !== timeB[i]) {
-                        return timeA[i] - timeB[i];
+            if (filteredData.length === 0) {
+                const errorRow = document.createElement("tr");
+                const errorCell = document.createElement("td");
+                errorCell.colSpan = 5;
+                errorCell.innerText = "No results found for this category.";
+                errorCell.style.textAlign = "center";
+                errorRow.appendChild(errorCell);
+                tableBody.appendChild(errorRow);
+            } else {
+                filteredData.sort((a, b) => {
+                    const timeA = a.time.split(":").map(Number);
+                    const timeB = b.time.split(":").map(Number);
+    
+                    for (let i = 0; i < 3; i++) {
+                        if (timeA[i] !== timeB[i]) {
+                            return timeA[i] - timeB[i];
+                        }
                     }
-                }
-
-                return 0;
-            });
-
-            // if (selectedCategory === "any%") {
-            // filteredData = filteredData.slice(0, 2);
-            // }
-
-            for (const [index, data] of filteredData.entries()) {
-                const row = document.createElement("tr");
-                const rankCell = document.createElement("td");
-                if (!(index < 3)) {
-                    rankCell.innerText = index + 1; 
-                }
-                const playerCell = document.createElement("td");
-                const playerLink = document.createElement("a");
-                  playerLink.href = data.video;
-                  playerLink.target = "_blank";
-                  playerLink.classList.add("video-link");
-                  playerLink.innerText = data.player;
-                
-                  playerLink.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    const videoId = extractVideoId(data.video);
-                    openVideoModal(videoId);
-                  });
-                
-                  playerCell.appendChild(playerLink);
-                
-                const timeCell = document.createElement("td");
-                timeCell.innerText = srcTime(data.time);
-                const dateCell = document.createElement("td");
-                dateCell.innerText = getResponsiveDate(data.date);
-                const categoryCell = document.createElement("td");
-                categoryCell.innerText = data.category;
-
-                dateCell.addEventListener("mouseenter", function () {
-                    const popup = createPopup(data.date);
-                    dateCell.appendChild(popup);
+    
+                    return 0;
                 });
-
-                dateCell.addEventListener("mouseleave", function () {
-                    const popup = dateCell.querySelector(".date-popup");
-                    if (popup) {
-                        dateCell.removeChild(popup);
+    
+                // if (selectedCategory === "any%") {
+                // filteredData = filteredData.slice(0, 2);
+                // }
+    
+                for (const [index, data] of filteredData.entries()) {
+                    const row = document.createElement("tr");
+                    const rankCell = document.createElement("td");
+                    if (!(index < 3)) {
+                        rankCell.innerText = index + 1; 
                     }
-                });
-
-                if (index < 3) {
-                    const rankImageElement = document.createElement("img");
-                    rankImageElement.src = getRankImage(index + 1);
-                    rankImageElement.classList.add("rank-image");
-                    rankCell.appendChild(rankImageElement);
-                } else {
-                    rankCell.innerText = index + 1;
-                } rankCell.style.textAlign = "center";
-
-                row.appendChild(rankCell);
-                row.appendChild(playerCell);
-                row.appendChild(timeCell);
-                row.appendChild(dateCell);
-                row.appendChild(categoryCell);
-
-                tableBody.appendChild(row);
+                    const playerCell = document.createElement("td");
+                    const playerLink = document.createElement("a");
+                      playerLink.href = data.video;
+                      playerLink.target = "_blank";
+                      playerLink.classList.add("video-link");
+                      playerLink.innerText = data.player;
+                    
+                      playerLink.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        const videoId = extractVideoId(data.video);
+                        openVideoModal(videoId);
+                      });
+                    
+                      playerCell.appendChild(playerLink);
+                    
+                    const timeCell = document.createElement("td");
+                    timeCell.innerText = srcTime(data.time);
+                    const dateCell = document.createElement("td");
+                    dateCell.innerText = getResponsiveDate(data.date);
+                    const categoryCell = document.createElement("td");
+                    categoryCell.innerText = data.category;
+    
+                    dateCell.addEventListener("mouseenter", function () {
+                        const popup = createPopup(data.date);
+                        dateCell.appendChild(popup);
+                    });
+    
+                    dateCell.addEventListener("mouseleave", function () {
+                        const popup = dateCell.querySelector(".date-popup");
+                        if (popup) {
+                            dateCell.removeChild(popup);
+                        }
+                    });
+    
+                    if (index < 3) {
+                        const rankImageElement = document.createElement("img");
+                        rankImageElement.src = getRankImage(index + 1);
+                        rankImageElement.classList.add("rank-image");
+                        rankCell.appendChild(rankImageElement);
+                    } else {
+                        rankCell.innerText = index + 1;
+                    } rankCell.style.textAlign = "center";
+    
+                    row.appendChild(rankCell);
+                    row.appendChild(playerCell);
+                    row.appendChild(timeCell);
+                    row.appendChild(dateCell);
+                    row.appendChild(categoryCell);
+    
+                    tableBody.appendChild(row);
+                }
             }
-
             table.appendChild(tableHeader);
             table.appendChild(tableBody);
             leaderboardElement.appendChild(table);
-
+            
             try {
                 updateURLHash(selectedCategory);
             } catch {}}
