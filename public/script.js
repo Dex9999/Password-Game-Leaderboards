@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             event.preventDefault();
 
             const player = document.getElementById("playerInput").value;
-            const time = document.getElementById("timeInput").value;
+            let time = document.getElementById("timeInput").value;
             const date = document.getElementById("dateInput").value;
             const category = document.getElementById("categoryInput").value;
             const videoLink = document.getElementById("videoLinkInput").value;
