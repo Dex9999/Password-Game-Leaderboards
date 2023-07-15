@@ -201,4 +201,34 @@ body {
   #toggleContainer label {
     margin-right: 5px;
   }
-  
+
+@media only screen and (max-width: 600px) {
+  #leaderboard {
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #popupForm {
+    padding: 10px;
+  }
+
+  #popupForm input,
+  #popupForm select {
+    font-size: 14px;
+  }
+
+  #popupForm h2 {
+    font-size: 18px;
+  }
+
+  #closeFormButton {
+    font-size: 20px;
+  }
+
+  button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
