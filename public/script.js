@@ -13,11 +13,11 @@ document.addEventListener("DOMContentLoaded", async function () {
           submitRunButton.style.fontSize = "250%";
         }
 
-        const leaderboardElement = document.getElementById("leaderboard");
+        const lol = document.getElementById("leaderboard");
 
-        if (leaderboardElement) {
-          leaderboardElement.style.width = "90%";
-          leaderboardElement.style.fontSize = "232%";
+        if (lol) {
+          lol.style.width = "90%";
+          lol.style.fontSize = "232%";
         }
 
         const rankImages = document.querySelectorAll(".rank-image");
