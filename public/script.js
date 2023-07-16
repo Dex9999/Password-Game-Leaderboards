@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", async function () {
     //make mobile look nice
+    let useModal = false;
     if (isMobileDevice()) {
-        alert("nwmobile")
+        alert("modal!mobile")
+        useModal = true
       const leaderboardElement = document.getElementById('leaderboard');
       leaderboardElement.style.width = '75%';
 
@@ -170,18 +172,21 @@ document.addEventListener("DOMContentLoaded", async function () {
                     }
                     const playerCell = document.createElement("td");
                     const playerLink = document.createElement("a");
-                      playerLink.href = data.video;
-                      playerLink.target = "_blank";
-                      playerLink.classList.add("video-link");
-                      playerLink.innerText = data.player;
-                    
-                      playerLink.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        const videoId = extractVideoId(data.video);
-                        openVideoModal(videoId);
-                      });
-                    
-                      playerCell.appendChild(playerLink);
+                        playerLink.href = data.video;
+                        playerLink.target = useModal ? "" : "_blank"; // Conditionally set the target attribute based on the boolean value.
+                        playerLink.classList.add("video-link");
+                        playerLink.innerText = data.player;
+                        
+                        if (useModal) {
+                          playerLink.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            const videoId = extractVideoId(data.video);
+                            openVideoModal(videoId);
+                          });
+                        }
+                        
+                        playerCell.appendChild(playerLink);
+
                     
                     const timeCell = document.createElement("td");
                     timeCell.innerText = srcTime(data.time);
