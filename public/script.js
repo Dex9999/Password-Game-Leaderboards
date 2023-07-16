@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", async function () {
     //make mobile look nice
-    let useModal = false;
+    let useModal = true;
     if (isMobileDevice()) {
-        alert("modal!mobile")
-        useModal = true
+        alert("modl!mobile")
+        useModal = false
       const leaderboardElement = document.getElementById('leaderboard');
       leaderboardElement.style.width = '75%';
 
