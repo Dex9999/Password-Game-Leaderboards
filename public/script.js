@@ -497,57 +497,57 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
 
-        function shouldShowVideos() {
-            const showVideosCookie = getCookie("showVideos");
-            return showVideosCookie === "true";
-        }
+        // function shouldShowVideos() {
+        //     const showVideosCookie = getCookie("showVideos");
+        //     return showVideosCookie === "true";
+        // }
 
-        function setCookie(name, value, days) {
-            const expires = new Date();
-            expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-            document.cookie = `${name}=${value};expires=${
-                expires.toUTCString()
-            };path=/`;
-        }
+        // function setCookie(name, value, days) {
+        //     const expires = new Date();
+        //     expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+        //     document.cookie = `${name}=${value};expires=${
+        //         expires.toUTCString()
+        //     };path=/`;
+        // }
 
-        function getCookie(name) {
-            const cookieName = `${name}=`;
-            const cookies = document.cookie.split(";");
-            for (let i = 0; i < cookies.length; i++) {
-                let cookie = cookies[i];
-                while (cookie.charAt(0) === " ") {
-                    cookie = cookie.substring(1);
-                }
-                if (cookie.indexOf(cookieName) === 0) {
-                    return cookie.substring(cookieName.length, cookie.length);
-                }
-            }
-            return "";
-        }
+        // function getCookie(name) {
+        //     const cookieName = `${name}=`;
+        //     const cookies = document.cookie.split(";");
+        //     for (let i = 0; i < cookies.length; i++) {
+        //         let cookie = cookies[i];
+        //         while (cookie.charAt(0) === " ") {
+        //             cookie = cookie.substring(1);
+        //         }
+        //         if (cookie.indexOf(cookieName) === 0) {
+        //             return cookie.substring(cookieName.length, cookie.length);
+        //         }
+        //     }
+        //     return "";
+        // }
 
-        function toggleVideoVisibility() {
-            const showVideos = shouldShowVideos();
-            const videoLinks = document.getElementsByClassName("video-link");
-            for (const videoLink of videoLinks) {
-                videoLink.style.display = showVideos ? "inline" : "none";
-            }
-        }
+        // function toggleVideoVisibility() {
+        //     const showVideos = shouldShowVideos();
+        //     const videoLinks = document.getElementsByClassName("video-link");
+        //     for (const videoLink of videoLinks) {
+        //         videoLink.style.display = showVideos ? "inline" : "none";
+        //     }
+        // }
 
-        const toggleVideosInput = document.getElementById("toggleVideos");
-        toggleVideosInput.checked = shouldShowVideos();
+        // const toggleVideosInput = document.getElementById("toggleVideos");
+        // toggleVideosInput.checked = shouldShowVideos();
 
-        toggleVideosInput.addEventListener("change", function () {
-            updateVideoVisibilityCookie();
-            toggleVideoVisibility();
-        });
+        // toggleVideosInput.addEventListener("change", function () {
+        //     updateVideoVisibilityCookie();
+        //     toggleVideoVisibility();
+        // });
 
-        function updateVideoVisibilityCookie() {
-            setCookie("showVideos", shouldShowVideos() ? "false" : "true", 7);
-        }
+        // function updateVideoVisibilityCookie() {
+        //     setCookie("showVideos", shouldShowVideos() ? "false" : "true", 7);
+        // }
 
         submitRunButton.addEventListener("click", function () {
-            updateVideoVisibilityCookie();
-            toggleVideoVisibility();
+            // updateVideoVisibilityCookie();
+            // toggleVideoVisibility();
             openPopupForm();
         });
 
@@ -586,8 +586,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             return result;
         }
     
-function isMobileDevice() {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
+// function isMobileDevice() {
+//   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+// }
 
 });
