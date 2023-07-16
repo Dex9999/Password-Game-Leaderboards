@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
     //make mobile look nice
     if (isMobileDevice()) {
-        alert("newmobile")
+        alert("nwmobile")
       const leaderboardElement = document.getElementById('leaderboard');
       leaderboardElement.style.width = '75%';
 
@@ -41,6 +41,32 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         if (gameTitleElement) {
           gameTitleElement.style.width = "25em";
+        }
+
+        const popupFormElement = document.getElementById("popupForm");
+
+        if (popupFormElement) {
+          popupFormElement.style.fontSize = "250%";
+          popupFormElement.style.maxWidth = "80%";
+            
+          const inputElements = popupFormElement.querySelectorAll("input");
+          inputElements.forEach((inputElement) => {
+            inputElement.style.fontSize = "1.25em";
+          });
+        }
+
+        const categoryInputElement = document.getElementById("categoryInput");
+
+        if (categoryInputElement) {
+          categoryInputElement.style.fontSize = "125%";
+        }
+
+        const submitFormButtonElement = document.getElementById("submitFormButton");
+
+        if (submitFormButtonElement) {
+          submitFormButtonElement.style.width = "400px";
+          submitFormButtonElement.style.height = "150px";
+          submitFormButtonElement.style.fontSize = "250%";
         }
     }
     const response = await fetch("https://dumblilcorsthing.vercel.app/api/proxy?url=https%3A%2F%2Fwahooo.dex99.repl.co%2Fspeedrun-data");
