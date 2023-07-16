@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    if (!window.mobileCheck()) {
+    if (!mobileCheck()) {
       const leaderboardElement = document.getElementById('leaderboard');
       leaderboardElement.style.width = '75%';
     }
