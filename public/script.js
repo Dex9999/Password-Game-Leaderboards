@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
+    //make mobile look nice
     if (isMobileDevice()) {
-        alert("mobile")
+        alert("newmobile")
       const leaderboardElement = document.getElementById('leaderboard');
       leaderboardElement.style.width = '75%';
 
@@ -12,6 +13,35 @@ document.addEventListener("DOMContentLoaded", async function () {
           submitRunButton.style.fontSize = "250%";
         }
 
+        const leaderboardElement = document.getElementById("leaderboard");
+
+        if (leaderboardElement) {
+          leaderboardElement.style.width = "90%";
+          leaderboardElement.style.fontSize = "232%";
+        }
+
+        const rankImages = document.querySelectorAll(".rank-image");
+
+        rankImages.forEach((rankImage) => {
+          rankImage.style.setProperty("width", "30%", "important");
+          rankImage.style.setProperty("height", "10%", "important");
+        });
+        const categoryFilterLabel = document.querySelector("#categoryFilter > label");
+        const categorySelect = document.getElementById("categorySelect");
+        
+        if (categoryFilterLabel) {
+          categoryFilterLabel.style.fontSize = "250%";
+        }
+        
+        if (categorySelect) {
+          categorySelect.style.fontSize = "250%";
+        }
+
+        const gameTitleElement = document.getElementById("gameTitle");
+
+        if (gameTitleElement) {
+          gameTitleElement.style.width = "25em";
+        }
     }
     const response = await fetch("https://dumblilcorsthing.vercel.app/api/proxy?url=https%3A%2F%2Fwahooo.dex99.repl.co%2Fspeedrun-data");
         let leaderboardData = await response.json()
