@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     //make mobile look nice
     let useModal = true;
     if (isMobileDevice()) {
-        alert("mod!mo/bile")
         useModal = false
         
       const leaderboardElement = document.getElementById('leaderboard');
@@ -66,13 +65,6 @@ document.addEventListener("DOMContentLoaded", async function () {
           submitFormButtonElement.style.height = "150px";
           submitFormButtonElement.style.fontSize = "250%";
         }
-
-        const rankImages = document.querySelectorAll(".rank-image");
-
-        rankImages.forEach((rankImage) => {
-          rankImage.style.setProperty("width", "30%", "important");
-          rankImage.style.setProperty("height", "10%", "important");
-        });
     }
     const response = await fetch("https://dumblilcorsthing.vercel.app/api/proxy?url=https%3A%2F%2Fwahooo.dex99.repl.co%2Fspeedrun-data");
         let leaderboardData = await response.json()
@@ -626,6 +618,15 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
         createLeaderboard();
+        if (isMobileDevice()) {
+            const rankImages = document.querySelectorAll(".rank-image");
+    
+            rankImages.forEach((rankImage) => {
+              rankImage.style.setProperty("width", "30%", "important");
+              rankImage.style.setProperty("height", "10%", "important");
+            });
+        }
+    
 
         function srcTime(time) {
             let minutes = 0;
