@@ -4,6 +4,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (isMobileDevice()) {
         alert("modl!mobile")
         useModal = false
+        const rankImages = document.querySelectorAll(".rank-image");
+
+        rankImages.forEach((rankImage) => {
+          rankImage.style.setProperty("width", "30%", "important");
+          rankImage.style.setProperty("height", "10%", "important");
+        });
+        
       const leaderboardElement = document.getElementById('leaderboard');
       leaderboardElement.style.width = '75%';
 
@@ -22,12 +29,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           lol.style.fontSize = "232%";
         }
 
-        const rankImages = document.querySelectorAll(".rank-image");
-
-        rankImages.forEach((rankImage) => {
-          rankImage.style.setProperty("width", "30%", "important");
-          rankImage.style.setProperty("height", "10%", "important");
-        });
+        
         const categoryFilterLabel = document.querySelector("#categoryFilter > label");
         const categorySelect = document.getElementById("categorySelect");
         
