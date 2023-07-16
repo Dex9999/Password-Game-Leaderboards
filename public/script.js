@@ -1,8 +1,17 @@
 document.addEventListener("DOMContentLoaded", async function () {
     if (isMobileDevice()) {
-        alert("lol")
+        alert("mobile")
       const leaderboardElement = document.getElementById('leaderboard');
       leaderboardElement.style.width = '75%';
+
+        const submitRunButton = document.getElementById("submitRunButton");
+
+        if (submitRunButton) {
+          submitRunButton.style.width = "400px";
+          submitRunButton.style.height = "150px";
+          submitRunButton.style.fontSize = "250%";
+        }
+
     }
     const response = await fetch("https://dumblilcorsthing.vercel.app/api/proxy?url=https%3A%2F%2Fwahooo.dex99.repl.co%2Fspeedrun-data");
         let leaderboardData = await response.json()
