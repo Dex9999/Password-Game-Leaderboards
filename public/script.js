@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    if (mobileCheck()) {
-      const leaderboardElement = document.getElementById('leaderboard');
-      leaderboardElement.style.width = '75%';
-    }
+    // if (mobileCheck()) {
+    //   const leaderboardElement = document.getElementById('leaderboard');
+    //   leaderboardElement.style.width = '75%';
+    // }
     const response = await fetch("https://dumblilcorsthing.vercel.app/api/proxy?url=https%3A%2F%2Fwahooo.dex99.repl.co%2Fspeedrun-data");
         let leaderboardData = await response.json()
          
